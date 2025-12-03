@@ -1,0 +1,357 @@
+.app-shell {
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.app-subtitle {
+    margin-top: 0.25rem;
+    color: #6b7280;
+}
+
+.app-header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.app-body {
+    flex: 1;
+}
+
+.app-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.app-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.app-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+    gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+    .app-content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.app-content-left,
+.app-content-right {
+    min-width: 0;
+}
+
+.app-footer {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 0.75rem;
+    color: #6b7280;
+}
+
+.recipe-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.recipe-card {
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    padding: 0.9rem 1rem;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.recipe-card:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.recipe-card.selected {
+    border-color: #22c55e;
+}
+
+.recipe-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.recipe-card-title {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.recipe-card-meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.recipe-card-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 0.6rem;
+}
+
+.recipe-card-ingredients {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.recipe-detail {
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    padding: 1.1rem 1.3rem;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.recipe-detail.empty {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #6b7280;
+}
+
+.recipe-detail-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+/* Title row with star on the right of the title */
+.recipe-detail-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recipe-detail-title {
+    margin: 0;
+}
+
+.recipe-detail-meta {
+    margin-top: 0.25rem;
+    color: #6b7280;
+}
+
+.recipe-detail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-self: flex-start; /* keep under title, left-aligned */
+}
+
+.recipe-detail-image {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+}
+
+.recipe-detail-list {
+    margin: 0.25rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.recipe-form-section {
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    padding: 1.1rem 1.3rem;
+    background: #f9fafb;
+}
+
+.recipe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.form-row.inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.form-row.inline > label {
+    flex: 1 1 0;
+}
+
+/* two-column group for large textareas to look like a structured form */
+.form-row.two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 860px) {
+    .form-row.two-col {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.category-filter,
+.favorites-bar {
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    padding: 0.9rem 1rem;
+    background: #f9fafb;
+}
+
+.category-filter-select {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.favorites-bar .toggle,
+.category-filter .toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.step-guide {
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem 0.9rem;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.step-guide-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.step-guide-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.step-guide-current {
+    margin: 0;
+}
+
+.empty-state {
+    border-radius: 0.75rem;
+    border: 1px dashed #cbd5f5;
+    padding: 1rem;
+    text-align: center;
+    color: #6b7280;
+}
+
+.icon-button {
+    border-radius: 999px;
+    border: 1px solid transparent;
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    cursor: pointer;
+}
+
+.icon-button.favorite.active {
+    color: #f97316;
+}
+
+/* Slightly larger favorite icon in detail view */
+.icon-button.favorite.detail {
+    font-size: 1.25rem;
+    padding: 0.15rem 0.45rem;
+}
+
+.primary {
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+.primary:hover {
+    background-color: #16a34a;
+}
+
+.ghost {
+    background-color: #ffffff;
+    border-color: #d1d5db;
+}
+
+.ghost:hover {
+    background-color: #f3f4f6;
+}
+
+.danger {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.danger:hover {
+    background-color: #dc2626;
+}
+
+input,
+select,
+textarea {
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    padding: 0.45rem 0.6rem;
+    font: inherit;
+}
+
+/* make inputs expand within the form for a cleaner layout */
+.recipe-form label > input,
+.recipe-form label > select,
+.recipe-form label > textarea {
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #374151;
+}
