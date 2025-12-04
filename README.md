@@ -10,6 +10,7 @@ Kiemelt funkciók:
 - Kategória szerinti szűrés (középre igazított, téglalap szekció)
 - Minta receptek betöltése a `public/sample-recipes.json` forrásból
 - Lépések hangos felolvasás (Web Speech API)
+- Material Design alapú ikonok (Google Fonts Material Symbols)
 
 
 ### Előfeltételek
@@ -52,7 +53,13 @@ Recipe-React-App/
 │  │  ├─ RecipeDetail.tsx      # Részletes megjelenítés, lépések, kép
 │  │  ├─ RecipeForm.tsx        # Új/szerkesztés űrlap, helyi képfeltöltéssel
 │  │  ├─ CategoryFilter.tsx    # Kategória + kedvenc szűrő
-│  │  └─ StepGuide.tsx         # Lépés‑felolvasó vezérlő
+│  │  ├─ StepGuide.tsx         # Lépés‑felolvasó vezérlő
+│  │  ├─ HeaderActions.tsx     # Fejléc akciógombok (ikonokkal)
+│  │  ├─ FooterNotice.tsx      # Lábléc információs sáv
+│  │  ├─ FavoriteToggle.tsx    # Kedvenc csillag kapcsoló (Material ikon)
+│  │  ├─ RecipeMeta.tsx        # Meta sor (idő/nehézség/kategória, ikonokkal)
+│  │  ├─ IngredientsList.tsx   # Hozzávalók listája
+│  │  └─ StepsList.tsx         # Lépések listája
 │  ├─ hooks/
 │  │  ├─ useLocalStorage.ts    # Állapot szinkronizálása LocalStorage‑be
 │  │  ├─ useRecipeHighlight.ts # Kijelölés animáció kártyáknál
@@ -92,7 +99,7 @@ Recipe-React-App/
 
 - `src/components/RecipeCard.tsx`
   - Megjeleníti a recept címét, meta adatait, opcionális képet, hozzávalók rövidített listáját.
-  - Kedvencek gomb: csillag ikon, állapottól függő megjelenéssel.
+  - Kedvencek gomb: Material Design csillag ikon (kitöltött/üres állapot).
   - A kijelölt kártya finom skálázási animációt kap (`useRecipeHighlight`).
   - Opcionális mezők védett kezelése (pl. `ingredients ?? []`).
 
@@ -101,7 +108,7 @@ Recipe-React-App/
 - `src/components/RecipeDetail.tsx`
   - Megjeleníti a kijelölt recept teljes tartalmát.
   - Opcionális kép nagyobb előnézete, hozzávalók és lépések listája.
-  - “Módosít” és “Töröl” akciók; törlés előtt böngészős megerősítés.
+  - “Módosít” és “Töröl” akciók Material ikonokkal; törlés előtt böngészős megerősítés.
   - Integráció a `StepGuide` komponenssel.
 
 - `src/components/RecipeForm.tsx`
@@ -116,15 +123,15 @@ Recipe-React-App/
 
 #### Szűrők és kedvencek
 - `src/components/CategoryFilter.tsx`
-  - Kategória kiválasztása („Mind” opcióval).
-  - Csak kedvencek kapcsoló – ha a prop rendelkezésre áll.
+  - Kategória kiválasztása („Mind” opcióval), fejlécben szűrő ikon.
+  - Csak kedvencek kapcsoló – ha a prop rendelkezésre áll – kis csillag ikonnal.
   - Stílus: a `src/styles/App.css` fájlban a `.category-filter` egy középre igazított, téglalap alakú szekció, max. 640 px szélességgel.
 
 
 #### Lépésfelolvasó és animáció
 - `src/components/StepGuide.tsx` + `src/hooks/useStepGuide.ts`
   - A Web Speech API (SpeechSynthesis) használatával felolvassa a lépéseket.
-  - Vezérlők: Start/Stop, Előző/Következő; kijelzi a pillanatnyi lépést.
+  - Vezérlők Material ikonokkal: Start/Stop (play/stop), Előző/Következő (chevron ikonkészlet); kijelzi a pillanatnyi lépést.
   - Hook felel a beszéd indításáért/leállításáért és az index kezeléséért.
 
 - `src/hooks/useRecipeHighlight.ts`

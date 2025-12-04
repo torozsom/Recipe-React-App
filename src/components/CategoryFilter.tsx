@@ -32,7 +32,10 @@ export function CategoryFilter({
                                }: Props) {
     return (
         <section className="category-filter">
-            <h2>Szűrő</h2>
+            <h2 className="with-icon">
+                <span className="material-symbols-rounded" aria-hidden="true">filter_list</span>
+                Szűrő
+            </h2>
             <label className="category-filter-select">
                 Kategória
                 <select
@@ -54,7 +57,10 @@ export function CategoryFilter({
                         checked={showOnlyFavorites}
                         onChange={(e) => onToggleFavorites(e.target.checked)}
                     />
-                    <span>Kedvencek szűrése</span>
+                    <span className="with-icon">
+                        <span className="material-symbols-rounded" aria-hidden="true">star</span>
+                        Kedvencek szűrése
+                    </span>
                 </label>
             )}
         </section>

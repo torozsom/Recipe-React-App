@@ -1,5 +1,7 @@
 import {useRecipeHighlight} from '../hooks/useRecipeHighlight'
 import type {Recipe} from '../types'
+import {FavoriteToggle} from './FavoriteToggle'
+import {RecipeMeta} from './RecipeMeta'
 
 /**
  * A `RecipeCard` komponens bemeneti propjai.
@@ -36,30 +38,19 @@ export function RecipeCard({recipe, isSelected, onSelect, onToggleFavorite}: Pro
         >
             <header className="recipe-card-header">
                 <h2 className="recipe-card-title">{recipe.title}</h2>
-                <button
-                    type="button"
-                    className={`icon-button favorite ${
-                        recipe.isFavorite ? 'active' : ''
-                    }`}
-                    onClick={(event) => {
-                        event.stopPropagation() // kedvenc kapcsolásakor ne válassza ki a kártyát
-                        onToggleFavorite()
-                    }}
-                    aria-label={
-                        recipe.isFavorite ? 'Remove from favorites' : 'Add to favorites'
-                    }
-                >
-                    {recipe.isFavorite ? '★' : '☆'}
-                </button>
+                <FavoriteToggle
+                    active={!!recipe.isFavorite}
+                    onToggle={onToggleFavorite}
+                    stopPropagation
+                />
             </header>
 
-            {recipe.category && (
-                <p className="recipe-card-meta">Kategória: {recipe.category}</p>
-            )}
-
-            <p className="recipe-card-meta">
-                Idő: {recipe.time || 'n/a'} • Nehézség: {recipe.difficulty || 'n/a'}
-            </p>
+            <RecipeMeta
+                time={recipe.time}
+                difficulty={recipe.difficulty}
+                category={recipe.category}
+                variant="card"
+            />
 
             {recipe.imageUrl && (
                 <img

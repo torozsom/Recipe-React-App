@@ -1,4 +1,6 @@
 import {ReactNode} from 'react'
+import {HeaderActions} from './HeaderActions'
+import {FooterNotice} from './FooterNotice'
 
 /**
  * A `Layout` komponens propjai.
@@ -32,28 +34,13 @@ export function Layout({children, onCreateNew, onLoadSamples, hasRecipes}: Props
                         Rendszerezd a receptjeidet.
                     </p>
                 </div>
-                <div className="app-header-actions">
-                    <button className="primary" type="button" onClick={onCreateNew}>
-                        + Új recept
-                    </button>
-                    <button
-                        className="ghost"
-                        type="button"
-                        onClick={onLoadSamples}
-                    >
-                        Minta receptek betöltése
-                    </button>
-                </div>
+                <HeaderActions onCreateNew={onCreateNew} onLoadSamples={onLoadSamples} />
             </header>
 
             <div className="app-body">{children}</div>
 
             <footer className="app-footer">
-                <small>
-                    {hasRecipes
-                        ? ''
-                        : 'No recipes yet. Start by adding your first one! '}
-                </small>
+                <FooterNotice hasRecipes={hasRecipes} />
             </footer>
         </div>
     )

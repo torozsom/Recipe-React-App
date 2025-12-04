@@ -27,26 +27,31 @@ export function StepGuide({title, steps}: Props) {
     return (
         <section className="step-guide">
             <header className="step-guide-header">
-                <h3>Recept lépéseinek felolvasása</h3>
+                <h3>Lépések felolvasása</h3>
                 <div className="step-guide-actions">
                     {isPlaying ? (
-                        <button type="button" onClick={stop}>
+                        <button type="button" className="with-icon" onClick={stop}>
+                            <span className="material-symbols-rounded" aria-hidden="true">stop</span>
                             Stop
                         </button>
                     ) : (
-                        <button type="button" onClick={start}>
+                        <button type="button" className="with-icon" onClick={start}>
+                            <span className="material-symbols-rounded" aria-hidden="true">play_arrow</span>
                             Start
                         </button>
                     )}
-                    <button type="button" onClick={previous} disabled={currentIndex <= 0}>
+                    <button type="button" className="with-icon" onClick={previous} disabled={currentIndex <= 0}>
+                        <span className="material-symbols-rounded" aria-hidden="true">chevron_left</span>
                         Előző
                     </button>
                     <button
                         type="button"
+                        className="with-icon"
                         onClick={next}
                         disabled={currentIndex >= steps.length - 1}
                     >
                         Köv.
+                        <span className="material-symbols-rounded" aria-hidden="true">chevron_right</span>
                     </button>
                 </div>
             </header>

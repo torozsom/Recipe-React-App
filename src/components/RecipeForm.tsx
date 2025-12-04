@@ -180,9 +180,10 @@ export function RecipeForm({recipe, difficulties, onSave, onCancel}: Props) {
                         <div className="form-actions">
                             <button
                                 type="button"
-                                className="ghost"
+                                className="ghost with-icon"
                                 onClick={() => updateField('imageUrl', '')}
                             >
+                                <span className="material-symbols-rounded" aria-hidden="true">image_not_supported</span>
                                 Kép eltávolítása
                             </button>
                         </div>
@@ -209,10 +210,12 @@ export function RecipeForm({recipe, difficulties, onSave, onCancel}: Props) {
                 </div>
 
                 <div className="form-actions">
-                    <button type="submit" className="primary">
+                    <button type="submit" className="primary with-icon">
+                        <span className="material-symbols-rounded" aria-hidden="true">save</span>
                         Mentés
                     </button>
-                    <button type="button" className="ghost" onClick={onCancel}>
+                    <button type="button" className="ghost with-icon" onClick={onCancel}>
+                        <span className="material-symbols-rounded" aria-hidden="true">arrow_back</span>
                         Vissza
                     </button>
                 </div>

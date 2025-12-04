@@ -1,5 +1,9 @@
 import {StepGuide} from './StepGuide'
 import type {Recipe, RecipeId} from '../types'
+import {FavoriteToggle} from './FavoriteToggle'
+import {RecipeMeta} from './RecipeMeta'
+import {IngredientsList} from './IngredientsList'
+import {StepsList} from './StepsList'
 
 /**
  * A `RecipeDetail` komponens propjai.
@@ -31,7 +35,7 @@ export function RecipeDetail({recipe, onEdit, onDelete, onToggleFavorite}: Props
     }
 
     const handleDelete = () => {
-        if (confirm(`Delete recipe "${recipe.title}"?`)) {
+        if (confirm(`Biztosan törlöd a(z) "${recipe.title}" receptet?`)) {
             onDelete(recipe.id)
         }
     }
@@ -41,29 +45,30 @@ export function RecipeDetail({recipe, onEdit, onDelete, onToggleFavorite}: Props
             <header className="recipe-detail-header">
                 <div className="recipe-detail-title-row">
                     <h2 className="recipe-detail-title">{recipe.title}</h2>
-                    <button
-                        type="button"
-                        className={`icon-button favorite detail ${
-                            recipe.isFavorite ? 'active' : ''
-                        }`}
-                        onClick={() => onToggleFavorite(recipe.id)}
-                        aria-label={recipe.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                    >
-                        {recipe.isFavorite ? '★' : '☆'}
-                    </button>
+                    <FavoriteToggle
+                        active={!!recipe.isFavorite}
+                        onToggle={() => onToggleFavorite(recipe.id)}
+                        variant="detail"
+                    />
                 </div>
 
                 <div className="recipe-detail-actions">
-                    <button type="button" onClick={onEdit}>Módosít</button>
-                    <button type="button" className="danger" onClick={handleDelete}>
+                    <button type="button" className="with-icon" onClick={onEdit}>
+                        <span className="material-symbols-rounded" aria-hidden="true">edit</span>
+                        Módosít
+                    </button>
+                    <button type="button" className="danger with-icon" onClick={handleDelete}>
+                        <span className="material-symbols-rounded" aria-hidden="true">delete</span>
                         Töröl
                     </button>
                 </div>
 
-                <p className="recipe-detail-meta">
-                    Idő: {recipe.time || 'n/a'} • Nehézség: {recipe.difficulty || 'n/a'} •
-                    Kategória: {recipe.category || 'uncategorized'}
-                </p>
+                <RecipeMeta
+                    time={recipe.time}
+                    difficulty={recipe.difficulty}
+                    category={recipe.category}
+                    variant="detail"
+                />
             </header>
 
             {recipe.imageUrl && (
@@ -76,28 +81,12 @@ export function RecipeDetail({recipe, onEdit, onDelete, onToggleFavorite}: Props
 
             <section>
                 <h3>Hozzávalók</h3>
-                {recipe.ingredients?.length ? (
-                    <ul className="recipe-detail-list">
-                        {recipe.ingredients.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>Nincsenek még hozzávalók.</p>
-                )}
+                <IngredientsList items={recipe.ingredients} />
             </section>
 
             <section>
                 <h3>Lépések</h3>
-                {recipe.steps?.length ? (
-                    <ol className="recipe-detail-list">
-                        {recipe.steps.map((step, index) => (
-                            <li key={index}>{step}</li>
-                        ))}
-                    </ol>
-                ) : (
-                    <p>Nincsenek még lépések.</p>
-                )}
+                <StepsList steps={recipe.steps} />
             </section>
 
             <StepGuide title={recipe.title} steps={recipe.steps || []}/>

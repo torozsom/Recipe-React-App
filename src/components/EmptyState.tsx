@@ -15,7 +15,8 @@ export function EmptyState({onCreateNew}: Props) {
     return (
         <div className="empty-state">
             <p>Nincs a szűrésnek megfelelő recept.</p>
-            <button className="ghost" type="button" onClick={onCreateNew}>
+            <button className="ghost with-icon" type="button" onClick={onCreateNew}>
+                <span className="material-symbols-rounded" aria-hidden="true">add</span>
                 Új recept hozzáadása
             </button>
         </div>
