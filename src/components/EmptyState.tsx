@@ -7,9 +7,13 @@ type Props = {
 }
 
 /**
- * Üres állapot megjelenítése és akciógomb.
+ * Üres állapotot jelző nézet, amikor a szűrők alapján nincs megjeleníthető recept.
  *
- * @param onCreateNew Új recept létrehozásának indítása.
+ * Egy rövid tájékoztató üzenetet és egy akciógombot tartalmaz, amely új recept
+ * létrehozását kezdeményezi. Tipikusan akkor jelenik meg, amikor a keresés vagy
+ * kategória szűrés eredménye üres.
+ *
+ * @param onCreateNew Új recept létrehozását indító callback.
  */
 export function EmptyState({onCreateNew}: Props) {
     return (

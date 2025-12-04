@@ -3,7 +3,13 @@ type Props = {
 }
 
 /**
- * Elkészítési lépések számozott listában. Üres lista esetén helyettesítő szöveg.
+ * Elkészítési lépések megjelenítése számozott listában.
+ *
+ * Üres vagy nem megadott lista esetén rövid magyarázó szöveget jelenít meg,
+ * jelezve, hogy a recepthez még nincsenek rögzített lépések. A komponens
+ * a részletes nézet (`RecipeDetail`) részeként használható.
+ *
+ * @param steps Az elkészítés egyes lépései; minden elem külön listapontban jelenik meg.
  */
 export function StepsList({steps}: Props) {
     if (!steps || steps.length === 0) {

@@ -4,7 +4,14 @@ type Props = {
 }
 
 /**
- * Fejléc akciógombjai (új recept és minta receptek betöltése).
+ * Az alkalmazás fejlécében megjelenő akciógombok együttese.
+ *
+ * Egy elsődleges gombot biztosít új recept létrehozására, valamint egy
+ * másodlagos gombot a minta receptek betöltésére. A konkrét műveleteket
+ * a hívó komponens adja át callback-ek formájában.
+ *
+ * @param onCreateNew Új recept létrehozását indító callback.
+ * @param onLoadSamples Minta receptek betöltését indító callback.
  */
 export function HeaderActions({onCreateNew, onLoadSamples}: Props) {
     return (

@@ -6,7 +6,18 @@ type Props = {
 }
 
 /**
- * Recept meta adatok (idő, nehézség, kategória) egységes megjelenítése.
+ * Recept metaadatok (idő, nehézség, kategória) egységes megjelenítése.
+ *
+ * A komponens kártya (`card`) és részletes (`detail`) nézetben is használható,
+ * ennek megfelelően eltérő CSS-osztályt alkalmaz. Hiányzó értékek esetén
+ * alapértelmezett szöveget jelenít meg (`n/a`, `uncategorized`), így a UI
+ * stabil marad hiányos adatok mellett is.
+ *
+ * @param time Elkészítési idő, tetszőleges szöveges formában (pl. "45 perc").
+ * @param difficulty A recept nehézségi szintje, tetszőleges szövegként.
+ * @param category Opcionális kategórianév; ha meg van adva, egy további
+ *                  meta-szegmensben jelenik meg.
+ * @param variant Megjelenési változat: `card` (alapértelmezett) vagy `detail`.
  */
 export function RecipeMeta({time, difficulty, category, variant = 'card'}: Props) {
     const className = variant === 'detail' ? 'recipe-detail-meta' : 'recipe-card-meta'

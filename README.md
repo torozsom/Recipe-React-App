@@ -40,25 +40,26 @@ npm run preview
 
 
 ### Projekt felépítése
-```
+```text
 Recipe-React-App/
 ├─ public/
-│  └─ sample-recipes.json      # Külső mintareceptek forrása
+│  ├─ sample-recipes.json      # Külső mintareceptek forrása
+│  └─ vite.svg                 # Vite logó
 ├─ src/
 │  ├─ components/
-│  │  ├─ App.tsx               # Gyökér UI logika (importon keresztül)
+│  │  ├─ CategoryFilter.tsx    # Kategória + kedvenc szűrő
+│  │  ├─ EmptyState.tsx        # Üres állapot nézet, új recept gombbal
+│  │  ├─ FavoriteToggle.tsx    # Kedvenc csillag kapcsoló (Material ikon)
+│  │  ├─ FooterNotice.tsx      # Lábléc információs sáv
+│  │  ├─ HeaderActions.tsx     # Fejléc akciógombok (ikonokkal)
+│  │  ├─ IngredientsList.tsx   # Hozzávalók listája
 │  │  ├─ Layout.tsx            # Oldalváz: fejléc, gombok, lábléc
-│  │  ├─ RecipeList.tsx        # Recept kártyák rácsa
 │  │  ├─ RecipeCard.tsx        # Egyetlen recept kártya
 │  │  ├─ RecipeDetail.tsx      # Részletes megjelenítés, lépések, kép
 │  │  ├─ RecipeForm.tsx        # Új/szerkesztés űrlap, helyi képfeltöltéssel
-│  │  ├─ CategoryFilter.tsx    # Kategória + kedvenc szűrő
-│  │  ├─ StepGuide.tsx         # Lépés‑felolvasó vezérlő
-│  │  ├─ HeaderActions.tsx     # Fejléc akciógombok (ikonokkal)
-│  │  ├─ FooterNotice.tsx      # Lábléc információs sáv
-│  │  ├─ FavoriteToggle.tsx    # Kedvenc csillag kapcsoló (Material ikon)
+│  │  ├─ RecipeList.tsx        # Recept kártyák rácsa
 │  │  ├─ RecipeMeta.tsx        # Meta sor (idő/nehézség/kategória, ikonokkal)
-│  │  ├─ IngredientsList.tsx   # Hozzávalók listája
+│  │  ├─ StepGuide.tsx         # Lépés‑felolvasó vezérlő
 │  │  └─ StepsList.tsx         # Lépések listája
 │  ├─ hooks/
 │  │  ├─ useLocalStorage.ts    # Állapot szinkronizálása LocalStorage‑be
@@ -66,13 +67,14 @@ Recipe-React-App/
 │  │  └─ useStepGuide.ts       # Lépésfelolvasás állapota és vezérlése
 │  ├─ styles/
 │  │  └─ App.css               # App szintű stílusok (szekciók, rács, előnézet)
-│  ├─ types.ts                 # Közös típusok (Recipe, Difficulties)
+│  ├─ App.tsx                  # Fő alkalmazáskomponens, állapotkezelés
 │  ├─ index.css                # Alap stílusok
-│  └─ main.tsx                 # Belépési pont, gyökér render
-├─ index.html                   # Vite index
-├─ vite.config.js               # Vite konfiguráció
-├─ package.json                 # Függőségek és parancsok
-└─ tsconfig.json                # TypeScript beállítások
+│  ├─ main.tsx                 # Belépési pont, gyökér render
+│  └─ types.ts                 # Közös típusok (Recipe, Difficulty, RecipeId)
+├─ index.html                  # Vite index
+├─ vite.config.js              # Vite konfiguráció
+├─ package.json                # Függőségek és parancsok
+└─ tsconfig.json               # TypeScript beállítások
 ```
 
 
@@ -81,7 +83,7 @@ Recipe-React-App/
 #### App és elrendezés
 - `src/App.tsx`
   - A teljes alkalmazás állapotát kezeli: receptek, kijelölés, szűrők, szerkesztés.
-  - A receptek `useLocalStorage` hookkal tartósítva vannak.
+  - A receptek `useLocalStorage` hookkal tartósítva vannak a böngésző LocalStorage‑ában.
   - Műveletek: létrehozás, mentés (új vagy meglévő frissítése), törlés, kedvenc kapcsolása.
   - Kiszámítja a kategória listát és a szűrt nézetet memóizálva (`useMemo`).
 
@@ -89,7 +91,8 @@ Recipe-React-App/
   - Fejléc: címsor + akciógombok
     - “+ Új recept” – űrlap megnyitása
     - “Minta receptek betöltése” – beolvassa a `public/sample-recipes.json` állományt
-  - Lábjegyzet: rövid állapotüzenet (ha még nincsenek receptek)
+  - Lábjegyzet: rövid állapotüzenet (ha még nincsenek receptek) a `FooterNotice` komponenssel.
+  - Középen jeleníti meg az aktuális oldaltartalmat (lista + részletező/űrlap).
 
 
 #### Lista nézet
@@ -99,17 +102,21 @@ Recipe-React-App/
 
 - `src/components/RecipeCard.tsx`
   - Megjeleníti a recept címét, meta adatait, opcionális képet, hozzávalók rövidített listáját.
-  - Kedvencek gomb: Material Design csillag ikon (kitöltött/üres állapot).
+  - Kedvencek gomb: Material Design csillag ikon (kitöltött/üres állapot) a `FavoriteToggle` segítségével.
   - A kijelölt kártya finom skálázási animációt kap (`useRecipeHighlight`).
   - Opcionális mezők védett kezelése (pl. `ingredients ?? []`).
+
+- `src/components/EmptyState.tsx`
+  - Akkor jelenik meg, ha a szűrők alapján nincs egyetlen megjeleníthető recept sem.
+  - Rövid üzenetet és egy „Új recept” gombot tartalmaz, ami az űrlapot nyitja meg.
 
 
 #### Részletező és űrlap
 - `src/components/RecipeDetail.tsx`
   - Megjeleníti a kijelölt recept teljes tartalmát.
-  - Opcionális kép nagyobb előnézete, hozzávalók és lépések listája.
+  - Opcionális kép nagyobb előnézete, hozzávalók és lépések listája (`IngredientsList`, `StepsList`).
   - “Módosít” és “Töröl” akciók Material ikonokkal; törlés előtt böngészős megerősítés.
-  - Integráció a `StepGuide` komponenssel.
+  - Integráció a `StepGuide` komponenssel a lépések felolvasásához.
 
 - `src/components/RecipeForm.tsx`
   - Új recept készítése vagy meglévő szerkesztése.
@@ -123,16 +130,20 @@ Recipe-React-App/
 
 #### Szűrők és kedvencek
 - `src/components/CategoryFilter.tsx`
-  - Kategória kiválasztása („Mind” opcióval), fejlécben szűrő ikon.
-  - Csak kedvencek kapcsoló – ha a prop rendelkezésre áll – kis csillag ikonnal.
+  - Kategória kiválasztása („Mind” opcióval), felül egy szűrő UI‑szekcióban.
+  - Csak kedvencek kapcsoló – kis csillag ikonnal; a szűrés állapotát visszaadja a szülőnek.
   - Stílus: a `src/styles/App.css` fájlban a `.category-filter` egy középre igazított, téglalap alakú szekció, max. 640 px szélességgel.
+
+- `src/components/FavoriteToggle.tsx`
+  - Általános célú kedvenc‑csillag gomb, kártyán és részletező nézetben is használható.
+  - A `variant` prop alapján eltérő stílus alkalmazható.
 
 
 #### Lépésfelolvasó és animáció
 - `src/components/StepGuide.tsx` + `src/hooks/useStepGuide.ts`
   - A Web Speech API (SpeechSynthesis) használatával felolvassa a lépéseket.
   - Vezérlők Material ikonokkal: Start/Stop (play/stop), Előző/Következő (chevron ikonkészlet); kijelzi a pillanatnyi lépést.
-  - Hook felel a beszéd indításáért/leállításáért és az index kezeléséért.
+  - A `useStepGuide` hook felel a beszéd indításáért/leállításáért és az aktuális lépés index kezeléséért.
 
 - `src/hooks/useRecipeHighlight.ts`
   - Finom skálázási animáció, amikor egy receptkártya kijelölt állapotba kerül.
