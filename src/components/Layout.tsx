@@ -1,9 +1,3 @@
-/**
- * Alkalmazás keret (layout): fejléc, tartalom és lábléc.
- *
- * A globális akciókat (új recept, minta betöltése) a fejléc jobb oldalán
- * jeleníti meg, és befogadja a gyermek tartalmat az oldal törzsében.
- */
 import {ReactNode} from 'react'
 
 /**

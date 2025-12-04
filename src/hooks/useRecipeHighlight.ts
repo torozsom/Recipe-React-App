@@ -1,3 +1,6 @@
+import {MutableRefObject, useEffect, useRef, useState} from 'react'
+
+
 /**
  * Kártya kiemelésére szolgáló animációs hook.
  *
@@ -9,9 +12,6 @@
  * @param isSelected Akkor indít animációt, ha igazra vált.
  * @returns Objektum `cardRef` és `isAnimating` értékekkel. A `cardRef`-et a DOM elemhez kell kötni.
  */
-import {MutableRefObject, useEffect, useRef, useState} from 'react'
-
-
 export function useRecipeHighlight(isSelected: boolean) {
     const cardRef = useRef<HTMLElement | null>(null)
     const [isAnimating, setIsAnimating] = useState<boolean>(false)
@@ -20,13 +20,13 @@ export function useRecipeHighlight(isSelected: boolean) {
         if (!isSelected || !cardRef.current) return
 
         let frame: number | null = null
-        let start: number | undefined // animation start timestamp
+        let start: number | undefined
 
         setIsAnimating(true)
 
         const animate = (timestamp: number) => {
             if (!start) start = timestamp
-            const progress = Math.min((timestamp - start) / 400, 1) // 400ms duration
+            const progress = Math.min((timestamp - start) / 400, 1)
             const intensity = 1 + 0.08 * Math.sin(progress * Math.PI)
             if (cardRef.current) {
                 cardRef.current.style.transform = `scale(${intensity})`

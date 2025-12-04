@@ -1,18 +1,13 @@
-/**
- * Belépési pont: a React alkalmazás felmountolása a `#root` elembe.
- *
- * Ha a gyökérelem nem található, kivételt dob a könnyebb hibakeresés érdekében.
- */
 import {createRoot} from 'react-dom/client'
 import './index.css'
 import App from './App'
 
 
 /** Gyökér konténer elem lekérdezése. */
-const container = document.getElementById('root') as HTMLElement | null // get root container
+const container = document.getElementById('root') as HTMLElement | null // gyökérelem lekérése
 
 if (!container)
-    throw new Error('Root element with id "root" not found') // hard fail if missing
+    throw new Error('Nem található "root" azonosítójú gyökérelem') // kritikus hiba, ha hiányzik
 
 
 createRoot(container).render(<App/>)

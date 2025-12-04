@@ -1,10 +1,3 @@
-/**
- * Részletes nézet a kiválasztott recepthez, műveletekkel és hangos lépésvezetővel.
- *
- * A cím mellett jobbra található a kedvenc (csillag) ikon. A cím alatt
- * külön akciósorban jelenik meg a „Módosít” és „Töröl” gomb, ez alatt pedig
- * a meta információk (idő, nehézség, kategória).
- */
 import {StepGuide} from './StepGuide'
 import type {Recipe, RecipeId} from '../types'
 

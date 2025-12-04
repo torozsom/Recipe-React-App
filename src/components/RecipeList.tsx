@@ -1,6 +1,3 @@
-/**
- * Görgethető receptlista kártyákkal, kiválasztással és kedvenc kapcsolóval.
- */
 import {RecipeCard} from './RecipeCard'
 import type {Recipe, RecipeId} from '../types'
 
@@ -29,7 +26,7 @@ export function RecipeList({
                                onToggleFavorite,
                            }: Props) {
     return (
-        <div className="recipe-list" aria-label="Recipes">{/* grid of recipe cards */}
+        <div className="recipe-list" aria-label="Recipes">{}
             {recipes.map((recipe) => (
                 <RecipeCard
                     key={recipe.id}

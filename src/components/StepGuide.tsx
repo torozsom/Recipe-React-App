@@ -1,9 +1,3 @@
-/**
- * Hangos lépésvezető UI komponens a Web Speech API‑t használó lejátszóhoz.
- *
- * A megadott lépéseket képes felolvasni, és gombokkal irányítható
- * (Start/Stop/Previous/Next). Ha nincs lépés, nem renderel tartalmat.
- */
 import {useStepGuide} from '../hooks/useStepGuide'
 
 /**
@@ -57,7 +51,7 @@ export function StepGuide({title, steps}: Props) {
                 </div>
             </header>
 
-            <p className="step-guide-current">{/* live indicator of current step */}
+            <p className="step-guide-current">{}
                 {currentIndex + 1}. lépés: {steps[currentIndex]}
             </p>
         </section>

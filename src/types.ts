@@ -1,7 +1,7 @@
 /**
- * Közös domain típusok a Recept alkalmazáshoz.
+ * Közös típusok a Recept alkalmazáshoz.
  *
- * Ezek a típusok a komponensek és horgok (hooks) között megosztva biztosítják
+ * Ezek a típusok a komponensek és hooks-ok között megosztva biztosítják
  * a konzisztens adatmodellt. A legtöbb komponens a `Recipe`, `RecipeId` és
  * a nehézségi szint (`Difficulty`) típusokra támaszkodik.
  */
@@ -28,9 +28,3 @@ export interface Recipe {
     steps?: string[]
     isFavorite?: boolean
 }
-
-/**
- * Az űrlap által használt forma: azonosító és kedvenc jelölés nélkül.
- * Hasznos új recept létrehozásakor.
- */
-export type RecipeDraft = Omit<Recipe, 'id' | 'isFavorite'>

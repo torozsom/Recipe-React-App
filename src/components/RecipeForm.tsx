@@ -1,11 +1,4 @@
-/**
- * Vezérelt űrlap új recept létrehozásához vagy meglévő szerkesztéséhez.
- *
- * A komponens belső `FormState` állapotot tart fenn, amely a bemeneteket
- * tárolja. Mentéskor a soronként megadott hozzávalókat és lépéseket tömbbé
- * alakítja, és `Partial<Recipe>` formában adja vissza a szülőnek.
- */
-import {FormEvent, useEffect, useState, ChangeEvent} from 'react'
+import {ChangeEvent, FormEvent, useEffect, useState} from 'react'
 import type {Difficulty, Recipe} from '../types'
 
 /**
@@ -63,7 +56,7 @@ export function RecipeForm({recipe, difficulties, onSave, onCancel}: Props) {
         } else {
             setForm(emptyRecipe)
         }
-    }, [recipe]) // sync form when recipe prop changes
+    }, [recipe])
 
     /** Mezőérték frissítése a belső űrlapállapotban. */
     const updateField = (field: keyof FormState, value: string) => {
@@ -97,7 +90,7 @@ export function RecipeForm({recipe, difficulties, onSave, onCancel}: Props) {
             steps,
         }
 
-        onSave(payload) // hand off to parent
+        onSave(payload)
     }
 
     return (
@@ -183,7 +176,7 @@ export function RecipeForm({recipe, difficulties, onSave, onCancel}: Props) {
 
                 {form.imageUrl && (
                     <div className="image-preview">
-                        <img src={form.imageUrl} alt="Recipe preview" className="image-preview-img" />
+                        <img src={form.imageUrl} alt="Recipe preview" className="image-preview-img"/>
                         <div className="form-actions">
                             <button
                                 type="button"

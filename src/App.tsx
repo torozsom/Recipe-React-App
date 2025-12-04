@@ -19,20 +19,21 @@ import {EmptyState} from './components/EmptyState'
 import type {Recipe, RecipeId} from './types'
 
 
-const DIFFICULTIES = ['Egyszerű', 'Normál', 'Nehéz'] // available difficulty options
+// elérhető nehézségi szint opciók
+const DIFFICULTIES = ['Egyszerű', 'Normál', 'Nehéz']
 
 
 /**
  * Fő alkalmazás komponens, amely a teljes UI‑t összeállítja.
  */
 export function App() {
-    // persist recipes in LocalStorage
+    // receptek tartós tárolása a LocalStorage-ban
     const [storedRecipes, setStoredRecipes] = useLocalStorage<Recipe[]>('recipes', [],)
 
-    const [selectedId, setSelectedId] = useState<RecipeId | null>(null) // focused recipe id
-    const [filterCategory, setFilterCategory] = useState<string>('all') // category filter
-    const [showOnlyFavorites, setShowOnlyFavorites] = useState<boolean>(false) // favorites toggle
-    const [isEditing, setIsEditing] = useState<boolean>(false) // edit mode flag
+    const [selectedId, setSelectedId] = useState<RecipeId | null>(null) // fókuszban lévő recept azonosítója
+    const [filterCategory, setFilterCategory] = useState<string>('all') // kategória szűrő
+    const [showOnlyFavorites, setShowOnlyFavorites] = useState<boolean>(false) // csak kedvencek kapcsoló
+    const [isEditing, setIsEditing] = useState<boolean>(false) // szerkesztési mód jelző
 
 
     const categories = useMemo(() => {
@@ -41,7 +42,7 @@ export function App() {
                 .map((r) => r.category)
                 .filter((v): v is string => Boolean(v)),
         )
-        return Array.from(set) // unique list of categories
+        return Array.from(set) // egyedi kategórialistát ad vissza
     }, [storedRecipes])
 
 
@@ -50,20 +51,20 @@ export function App() {
             const matchCategory =
                 filterCategory === 'all' || recipe.category === filterCategory
             const matchFavorite = !showOnlyFavorites || !!recipe.isFavorite
-            return matchCategory && matchFavorite // both filters must pass
+            return matchCategory && matchFavorite // mindkét szűrő feltételének teljesülnie kell
         })
     }, [storedRecipes, filterCategory, showOnlyFavorites])
 
 
     const selectedRecipe: Recipe | null =
-        storedRecipes.find((r) => r.id === selectedId) || null // derived selected recipe
+        storedRecipes.find((r) => r.id === selectedId) || null // származtatott kijelölt recept
 
 
     /**
      * Recept mentése: ha van `id`, frissítés; különben létrehozás új azonosítóval.
      */
     const handleSaveRecipe = (recipe: Partial<Recipe>) => {
-        // create or update a recipe then close the form
+        // recept létrehozása vagy frissítése, majd az űrlap bezárása
         if (recipe.id) {
             const updated = storedRecipes.map((r) =>
                 r.id === recipe.id ? (recipe as Recipe) : r,
@@ -88,7 +89,7 @@ export function App() {
      * Recept végleges törlése. Ha a törölt volt a kijelölt, a kijelölést törli.
      */
     const handleDeleteRecipe = (id: RecipeId) => {
-        // remove a recipe and clear selection if needed
+        // recept eltávolítása és szükség esetén a kijelölés törlése
         const updated = storedRecipes.filter((r) => r.id !== id)
         setStoredRecipes(updated)
         if (selectedId === id) {
@@ -99,7 +100,7 @@ export function App() {
 
     /** Kedvenc jelölésének átkapcsolása egy receptnél. */
     const handleToggleFavorite = (id: RecipeId) => {
-        // toggle favorite flag for a recipe
+        // kedvenc jelző átkapcsolása a receptnél
         const updated = storedRecipes.map((r) =>
             r.id === id ? {...r, isFavorite: !r.isFavorite} : r,
         )
@@ -109,7 +110,7 @@ export function App() {
 
     /** Új recept létrehozása űrlap megnyitásával. */
     const handleCreateNew = () => {
-        // open form for creating a new recipe
+        // űrlap megnyitása új recept létrehozásához
         setSelectedId(null)
         setIsEditing(true)
     }
@@ -117,7 +118,7 @@ export function App() {
 
     /** Kijelölt recept szerkesztése űrlap megnyitásával. */
     const handleEditSelected = () => {
-        // open form for editing the selected recipe
+        // űrlap megnyitása a kijelölt recept szerkesztéséhez
         if (!selectedRecipe) return
         setIsEditing(true)
     }
@@ -125,7 +126,7 @@ export function App() {
 
     /** Szerkesztés megszakítása, űrlap bezárása mentés nélkül. */
     const handleCancelEdit = () => {
-        // close the form without saving
+        // űrlap bezárása mentés nélkül
         setIsEditing(false)
     }
 
@@ -135,7 +136,7 @@ export function App() {
      * egyesítése a meglévő listával (azonosító alapján deduplikál).
      */
     const handleLoadSampleRecipes = async () => {
-        // fetch and merge sample recipes (id de-dup)
+        // minta receptek letöltése és egyesítése (azonosító alapján deduplikálás)
         try {
             const response = await fetch('/sample-recipes.json')
             if (!response.ok) {

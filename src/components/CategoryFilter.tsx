@@ -1,11 +1,4 @@
 /**
- * Kategória szűrő és kedvencek kapcsoló komponens.
- *
- * A bal oldali oldalsávban jelenik meg. Lehetővé teszi a receptek
- * kategória szerinti szűrését, és – ha engedélyezve – a kedvencek
- * külön szűrését is.
- */
-/**
  * A `CategoryFilter` komponens bemeneti propjai.
  * @property categories Elérhető kategóriák listája.
  * @property selected A jelenleg kiválasztott kategória értéke (pl. `all`).

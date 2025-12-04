@@ -1,9 +1,4 @@
 /**
- * Üres állapot komponens, amikor nincs a szűrésnek megfelelő recept.
- *
- * Javaslatot tesz új recept hozzáadására egy gombbal.
- */
-/**
  * A komponens bemeneti propjai.
  * @property onCreateNew Új recept létrehozását indító callback.
  */

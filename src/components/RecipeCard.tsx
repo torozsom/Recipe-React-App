@@ -1,10 +1,3 @@
-/**
- * Kompakt kártya egyetlen recept rövid előnézetéhez.
- *
- * A kártya kattintásra kiválasztja a receptet, a csillag ikon pedig
- * a kedvencek állapotát váltja. A skálázó kiemeléshez a `useRecipeHighlight`
- * hookot használja.
- */
 import {useRecipeHighlight} from '../hooks/useRecipeHighlight'
 import type {Recipe} from '../types'
 
@@ -39,7 +32,7 @@ export function RecipeCard({recipe, isSelected, onSelect, onToggleFavorite}: Pro
             className={`recipe-card ${isSelected ? 'selected' : ''} ${
                 isAnimating ? 'highlight' : ''
             }`}
-            onClick={onSelect} // select card on click
+            onClick={onSelect} // kártya kiválasztása kattintásra
         >
             <header className="recipe-card-header">
                 <h2 className="recipe-card-title">{recipe.title}</h2>
@@ -49,7 +42,7 @@ export function RecipeCard({recipe, isSelected, onSelect, onToggleFavorite}: Pro
                         recipe.isFavorite ? 'active' : ''
                     }`}
                     onClick={(event) => {
-                        event.stopPropagation() // don't select when toggling favorite
+                        event.stopPropagation() // kedvenc kapcsolásakor ne válassza ki a kártyát
                         onToggleFavorite()
                     }}
                     aria-label={
@@ -76,13 +69,17 @@ export function RecipeCard({recipe, isSelected, onSelect, onToggleFavorite}: Pro
                     loading="lazy"
                 />
             )}
-
-            {recipe.ingredients?.length > 0 && (
-                <p className="recipe-card-ingredients">
-                    {recipe.ingredients.slice(0, 3).join(', ')}
-                    {recipe.ingredients.length > 3 ? '…' : ''}
-                </p>
-            )}
+            {(() => {
+                const ingredients = recipe.ingredients ?? []
+                return (
+                    ingredients.length > 0 && (
+                        <p className="recipe-card-ingredients">
+                            {ingredients.slice(0, 3).join(', ')}
+                            {ingredients.length > 3 ? '…' : ''}
+                        </p>
+                    )
+                )
+            })()}
         </article>
     )
 }

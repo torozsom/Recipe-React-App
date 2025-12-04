@@ -1,13 +1,3 @@
-/**
- * Hangos lépésvezető segédhook a Web Speech API használatával.
- *
- * A megadott lépések szövegét a böngésző `speechSynthesis` képességével
- * olvastatja fel. Kezeli az indítás/leállítás, illetve az előző/következő
- * lépésekre ugrás logikáját, és állapotot ad vissza a vezérlő UI számára.
- *
- * Megjegyzés: A Web Speech API támogatása böngészőfüggő; ahol nem elérhető,
- * a hook csendben nem végez lejátszást.
- */
 import {useEffect, useState} from 'react'
 
 
@@ -23,7 +13,6 @@ export function useStepGuide(title: string | undefined, steps: string[]) {
     const [isPlaying, setIsPlaying] = useState<boolean>(false)
 
     useEffect(() => {
-        // reset when recipe changes
         setCurrentIndex(0)
         stopSpeaking()
         setIsPlaying(false)
@@ -41,13 +30,13 @@ export function useStepGuide(title: string | undefined, steps: string[]) {
         const utterance = new SpeechSynthesisUtterance(
             `${title || 'Recipe'}, ${index + 1}. lépés ${steps[index]}`,
         )
-        window.speechSynthesis.speak(utterance) // speak the current step
+        window.speechSynthesis.speak(utterance)
     }
 
 
     const stopSpeaking = () => {
         if (typeof window === 'undefined' || !('speechSynthesis' in window)) return
-        window.speechSynthesis.cancel() // cancel any queued speech
+        window.speechSynthesis.cancel()
     }
 
 
