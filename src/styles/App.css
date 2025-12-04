@@ -124,7 +124,7 @@
 
 .recipe-detail {
     border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #000000;
     padding: 1.1rem 1.3rem;
     background: #f9fafb;
     display: flex;
@@ -146,7 +146,6 @@
     gap: 0.5rem;
 }
 
-/* Title row with star on the right of the title */
 .recipe-detail-title-row {
     display: flex;
     align-items: center;
@@ -166,7 +165,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    align-self: flex-start; /* keep under title, left-aligned */
+    align-self: flex-start;
 }
 
 .recipe-detail-image {
@@ -174,6 +173,21 @@
     max-height: 260px;
     object-fit: cover;
     border-radius: 0.75rem;
+}
+
+.image-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.image-preview-img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
 }
 
 .recipe-detail-list {
@@ -210,7 +224,6 @@
     flex: 1 1 0;
 }
 
-/* two-column group for large textareas to look like a structured form */
 .form-row.two-col {
     display: grid;
     grid-template-columns: 1fr;
@@ -236,6 +249,14 @@
     border: 1px solid #e5e7eb;
     padding: 0.9rem 1rem;
     background: #f9fafb;
+}
+
+.category-filter {
+    border-radius: 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 640px;
+    width: 100%;
 }
 
 .category-filter-select {
@@ -298,7 +319,6 @@
     color: #f97316;
 }
 
-/* Slightly larger favorite icon in detail view */
 .icon-button.favorite.detail {
     font-size: 1.25rem;
     padding: 0.15rem 0.45rem;
@@ -340,7 +360,6 @@ textarea {
     font: inherit;
 }
 
-/* make inputs expand within the form for a cleaner layout */
 .recipe-form label > input,
 .recipe-form label > select,
 .recipe-form label > textarea {

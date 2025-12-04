@@ -57,9 +57,8 @@ export function Layout({children, onCreateNew, onLoadSamples, hasRecipes}: Props
             <footer className="app-footer">
                 <small>
                     {hasRecipes
-                        ? 'Your recipes are stored locally in this browser. '
+                        ? ''
                         : 'No recipes yet. Start by adding your first one! '}
-                    Uses Local Storage.
                 </small>
             </footer>
         </div>

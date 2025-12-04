@@ -5,7 +5,7 @@
  * tárolja. Mentéskor a soronként megadott hozzávalókat és lépéseket tömbbé
  * alakítja, és `Partial<Recipe>` formában adja vissza a szülőnek.
  */
-import {FormEvent, useEffect, useState} from 'react'
+import {FormEvent, useEffect, useState, ChangeEvent} from 'react'
 import type {Difficulty, Recipe} from '../types'
 
 /**
@@ -152,15 +152,49 @@ export function RecipeForm({recipe, difficulties, onSave, onCancel}: Props) {
 
                 <div className="form-row">
                     <label>
-                        Fénykép (opcionális)
+                        Fénykép feltöltése
                         <input
-                            type="url"
-                            value={form.imageUrl}
-                            onChange={(e) => updateField('imageUrl', e.target.value)}
-                            placeholder="https://example.com/my-recipe.jpg"
+                            type="file"
+                            accept="image/*"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                                const file = e.target.files?.[0]
+                                if (!file) return
+                                const MAX = 4 * 1024 * 1024 // 4MB
+                                if (file.size > MAX) {
+                                    alert('A kép túl nagy (max. 4MB). Kérlek, válassz kisebb fájlt.')
+                                    e.target.value = ''
+                                    return
+                                }
+                                if (!file.type.startsWith('image/')) {
+                                    alert('Csak képfájl tölthető fel.')
+                                    e.target.value = ''
+                                    return
+                                }
+                                const reader = new FileReader()
+                                reader.onload = () => {
+                                    const dataUrl = reader.result as string
+                                    updateField('imageUrl', dataUrl)
+                                }
+                                reader.readAsDataURL(file)
+                            }}
                         />
                     </label>
                 </div>
+
+                {form.imageUrl && (
+                    <div className="image-preview">
+                        <img src={form.imageUrl} alt="Recipe preview" className="image-preview-img" />
+                        <div className="form-actions">
+                            <button
+                                type="button"
+                                className="ghost"
+                                onClick={() => updateField('imageUrl', '')}
+                            >
+                                Kép eltávolítása
+                            </button>
+                        </div>
+                    </div>
+                )}
 
                 <div className="form-row two-col">
                     <label>

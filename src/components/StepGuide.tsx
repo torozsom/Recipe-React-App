@@ -33,7 +33,7 @@ export function StepGuide({title, steps}: Props) {
     return (
         <section className="step-guide">
             <header className="step-guide-header">
-                <h3>Voice step-by-step guide</h3>
+                <h3>Recept lépéseinek felolvasása</h3>
                 <div className="step-guide-actions">
                     {isPlaying ? (
                         <button type="button" onClick={stop}>
@@ -45,20 +45,20 @@ export function StepGuide({title, steps}: Props) {
                         </button>
                     )}
                     <button type="button" onClick={previous} disabled={currentIndex <= 0}>
-                        Previous
+                        Előző
                     </button>
                     <button
                         type="button"
                         onClick={next}
                         disabled={currentIndex >= steps.length - 1}
                     >
-                        Next
+                        Köv.
                     </button>
                 </div>
             </header>
 
             <p className="step-guide-current">{/* live indicator of current step */}
-                Step {currentIndex + 1} of {steps.length}: {steps[currentIndex]}
+                {currentIndex + 1}. lépés: {steps[currentIndex]}
             </p>
         </section>
     )

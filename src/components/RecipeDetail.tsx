@@ -82,7 +82,7 @@ export function RecipeDetail({recipe, onEdit, onDelete, onToggleFavorite}: Props
             )}
 
             <section>
-                <h3>Ingredients</h3>
+                <h3>Hozzávalók</h3>
                 {recipe.ingredients?.length ? (
                     <ul className="recipe-detail-list">
                         {recipe.ingredients.map((item, index) => (
@@ -95,7 +95,7 @@ export function RecipeDetail({recipe, onEdit, onDelete, onToggleFavorite}: Props
             </section>
 
             <section>
-                <h3>Steps</h3>
+                <h3>Lépések</h3>
                 {recipe.steps?.length ? (
                     <ol className="recipe-detail-list">
                         {recipe.steps.map((step, index) => (
