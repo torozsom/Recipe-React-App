@@ -13,6 +13,6 @@ type Props = {
  */
 export function FooterNotice({hasRecipes}: Props) {
     return (
-        <small>{hasRecipes ? '' : 'No recipes yet. Start by adding your first one! '}</small>
+        <small>{hasRecipes ? '' : 'Még nincs recepted, vegyél fel egyet! '}</small>
     )
 }
