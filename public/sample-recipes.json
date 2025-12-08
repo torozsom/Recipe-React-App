@@ -1,0 +1,87 @@
+[
+  {
+    "title": "Gyors paradicsomos tészta",
+    "time": "20 perc",
+    "difficulty": "Egyszerű",
+    "category": "Főétel",
+    "ingredients": [
+      "200 g spagetti",
+      "2 ek olívaolaj",
+      "2 gerezd fokhagyma",
+      "400 g darabolt paradicsom konzerv",
+      "só, bors",
+      "friss bazsalikom",
+      "reszelt parmezán"
+    ],
+    "steps": [
+      "A tésztát sós vízben al dente-re főzzük.",
+      "Az olajon megfuttatjuk az aprított fokhagymát.",
+      "Hozzáadjuk a paradicsomot, fűszerezzük és 8-10 percig rotyogtatjuk.",
+      "A leszűrt tésztát a szósszal összeforgatjuk és parmezánnal tálaljuk."
+    ],
+    "isFavorite": false
+  },
+  {
+    "title": "Csirkemell sült zöldségekkel",
+    "time": "35 perc",
+    "difficulty": "Normál",
+    "category": "Főétel",
+    "ingredients": [
+      "2 db csirkemell",
+      "1 piros kaliforniai paprika",
+      "1 cukkini",
+      "1 fej lilahagyma",
+      "2 ek olívaolaj",
+      "só, bors, oregánó"
+    ],
+    "steps": [
+      "A sütőt előmelegítjük 200°C-ra.",
+      "A zöldségeket nagyobb darabokra vágjuk, tepsibe tesszük.",
+      "A csirkemellet sózzuk, borsozzuk, fűszerezzük és a zöldségek mellé tesszük.",
+      "Meglocsoljuk olívaolajjal és 25-30 perc alatt megsütjük."
+    ],
+    "isFavorite": false
+  },
+  {
+    "title": "Banános zabpalacsinta",
+    "time": "15 perc",
+    "difficulty": "Egyszerű",
+    "category": "Reggeli",
+    "ingredients": [
+      "1 érett banán",
+      "1 tojás",
+      "60 g apró szemű zabpehely",
+      "1 tk sütőpor",
+      "csipet só",
+      "olaj a sütéshez"
+    ],
+    "steps": [
+      "A banánt villával péppé törjük.",
+      "Hozzáadjuk a tojást, zabpelyhet, sütőport és a sót, majd elkeverjük.",
+      "Tapadásmentes serpenyőben kevés olajon kis lepényeket sütünk mindkét oldalon 2-2 percig."
+    ],
+    "isFavorite": false
+  },
+  {
+    "title": "Görög saláta",
+    "time": "10 perc",
+    "difficulty": "Egyszerű",
+    "category": "Saláta",
+    "ingredients": [
+      "2 paradicsom",
+      "1 kígyóuborka",
+      "1/2 lilahagyma",
+      "100 g feta sajt",
+      "10-12 szem olívabogyó",
+      "2 ek olívaolaj",
+      "1 ek citromlé",
+      "oregánó, só, bors"
+    ],
+    "steps": [
+      "A zöldségeket felkockázzuk, a hagymát vékonyra szeleteljük.",
+      "Hozzáadjuk az olívabogyót és a kockázott fetát.",
+      "Olívaolajból és citromléből öntetet készítünk, fűszerezzük, majd a salátára öntjük és összeforgatjuk."
+    ],
+    "isFavorite": false
+  }
+]
