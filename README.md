@@ -2,8 +2,6 @@
   <h1>Recept kártyák — React app</h1>
 </div>
 
----
-
 Ez a repó egy egyszerű, de jól strukturált receptkezelő alkalmazást tartalmaz React és TypeScript alapokon. A cél egy letisztult, gyorsan használható felület, ahol saját receptjeidet tudod rögzíteni, kategorizálni, kedvencnek jelölni, valamint a lépéseket géphanggal felolvastatni. A receptek a böngésző LocalStorage‑ában tárolódnak, így frissítés után is megmaradnak.
 
 ### Kiemelt funkciók:
