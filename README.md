@@ -1,8 +1,12 @@
-### Recept kártyák — React + TypeScript példaalkalmazás
+<div align="center">
+  <h1>Recept kártyák — React app</h1>
+</div>
 
-Ez a repo egy egyszerű, de jól strukturált receptkezelő alkalmazást tartalmaz React és TypeScript alapokon. A cél egy letisztult, gyorsan használható felület, ahol saját receptjeidet tudod rögzíteni, kategorizálni, kedvencnek jelölni, valamint a lépéseket géphanggal felolvastatni. A receptek a böngésző LocalStorage‑ában tárolódnak, így frissítés után is megmaradnak.
+---
 
-Kiemelt funkciók:
+Ez a repó egy egyszerű, de jól strukturált receptkezelő alkalmazást tartalmaz React és TypeScript alapokon. A cél egy letisztult, gyorsan használható felület, ahol saját receptjeidet tudod rögzíteni, kategorizálni, kedvencnek jelölni, valamint a lépéseket géphanggal felolvastatni. A receptek a böngésző LocalStorage‑ában tárolódnak, így frissítés után is megmaradnak.
+
+### Kiemelt funkciók:
 - Receptlista és részletes nézet
 - Új recept felvétele és szerkesztése (hozzávalók, lépések)
 - Helyi képfájl feltöltése vagy kép URL megadása a receptekhez
@@ -12,6 +16,13 @@ Kiemelt funkciók:
 - Lépések hangos felolvasás (Web Speech API)
 - Material Design alapú ikonok (Google Fonts Material Symbols)
 
+---
+
+<p align="center">
+  <img src="assets/mainpage.png" width="700">
+</p>
+
+---
 
 ### Előfeltételek
 - Node.js 18+ (ajánlott LTS)
@@ -37,45 +48,6 @@ npm run preview
 - `npm run build` – produkciós build `dist` mappába
 - `npm run preview` – helyi előnézet a buildelt állományokról
 - `npm run lint` – ESLint ellenőrzés
-
-
-### Projekt felépítése
-```text
-Recipe-React-App/
-├─ public/
-│  ├─ sample-recipes.json      # Külső mintareceptek forrása
-│  └─ vite.svg                 # Vite logó
-├─ src/
-│  ├─ components/
-│  │  ├─ CategoryFilter.tsx    # Kategória + kedvenc szűrő
-│  │  ├─ EmptyState.tsx        # Üres állapot nézet, új recept gombbal
-│  │  ├─ FavoriteToggle.tsx    # Kedvenc csillag kapcsoló (Material ikon)
-│  │  ├─ FooterNotice.tsx      # Lábléc információs sáv
-│  │  ├─ HeaderActions.tsx     # Fejléc akciógombok (ikonokkal)
-│  │  ├─ IngredientsList.tsx   # Hozzávalók listája
-│  │  ├─ Layout.tsx            # Oldalváz: fejléc, gombok, lábléc
-│  │  ├─ RecipeCard.tsx        # Egyetlen recept kártya
-│  │  ├─ RecipeDetail.tsx      # Részletes megjelenítés, lépések, kép
-│  │  ├─ RecipeForm.tsx        # Új/szerkesztés űrlap, helyi képfeltöltéssel
-│  │  ├─ RecipeList.tsx        # Recept kártyák rácsa
-│  │  ├─ RecipeMeta.tsx        # Meta sor (idő/nehézség/kategória, ikonokkal)
-│  │  ├─ StepGuide.tsx         # Lépés‑felolvasó vezérlő
-│  │  └─ StepsList.tsx         # Lépések listája
-│  ├─ hooks/
-│  │  ├─ useLocalStorage.ts    # Állapot szinkronizálása LocalStorage‑be
-│  │  ├─ useRecipeHighlight.ts # Kijelölés animáció kártyáknál
-│  │  └─ useStepGuide.ts       # Lépésfelolvasás állapota és vezérlése
-│  ├─ styles/
-│  │  └─ App.css               # App szintű stílusok (szekciók, rács, előnézet)
-│  ├─ App.tsx                  # Fő alkalmazáskomponens, állapotkezelés
-│  ├─ index.css                # Alap stílusok
-│  ├─ main.tsx                 # Belépési pont, gyökér render
-│  └─ types.ts                 # Közös típusok (Recipe, Difficulty, RecipeId)
-├─ index.html                  # Vite index
-├─ vite.config.js              # Vite konfiguráció
-├─ package.json                # Függőségek és parancsok
-└─ tsconfig.json               # TypeScript beállítások
-```
 
 
 ### Fő komponensek és fájlok
